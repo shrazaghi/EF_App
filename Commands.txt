@@ -11,3 +11,5 @@ git clean -xfdi
 add-migration Initial-Migrations
 update-database
 remove-migration         // which will remove the migration that you have not applied.
+
+update-database -migration 20210525021627_Initial_Migration

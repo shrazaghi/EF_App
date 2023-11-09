@@ -192,6 +192,7 @@ public partial class AdventureWorks2019Context : DbContext
     public virtual DbSet<WorkOrder> WorkOrders { get; set; }
 
     public virtual DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
+    public virtual DbSet<Bird> Birds { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -251,6 +252,11 @@ public partial class AdventureWorks2019Context : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Date and time the record was last updated.");
             entity.Property(e => e.VersionDate).HasComment("Date and time the record was last updated.");
+        });
+        modelBuilder.Entity<Bird>(entity =>
+        {
+            entity.HasKey(b => b.Id).HasName("PK_Bird_Id");
+            entity.Property(b => b.BirdName).IsRequired();
         });
 
         modelBuilder.Entity<BillOfMaterial>(entity =>
